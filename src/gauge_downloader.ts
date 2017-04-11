@@ -43,6 +43,7 @@ export class GaugeDownloader {
     async setupGauge() {
         return this.download()
             .then(this.unzipGauge.bind(this))
+            .then(this.copyConfig.bind(this))
             .then(this.giveExecutionPermission.bind(this))
             .then(this.installGaugeJsPlugin.bind(this));
     }
@@ -56,6 +57,11 @@ export class GaugeDownloader {
                 reject(e);
             }
         });
+    }
+
+    private copyConfig() {
+        shelljs.cp('-R', options.GAUGE_CONFIG + '/*', options.GAUGE_HOME_CONFIG);
+        return Promise.resolve();
     }
 
     private installGaugeJsPlugin() {

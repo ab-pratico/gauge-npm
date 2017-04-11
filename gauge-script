@@ -1,0 +1,2 @@
+#!$(which node)
+require('./dist/gauge');

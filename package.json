@@ -4,7 +4,7 @@
   "description": "",
   "main": "gauge.js",
   "bin": {
-    "gauge": "gauge.js"
+    "gauge": "./gauge-script"
   },
   "dependencies": {
     "abab": "^1.0.3",
@@ -392,20 +392,19 @@
   },
   "devDependencies": {
     "@types/adm-zip": "^0.4.31",
-    "@types/jasmine": "^2.5.47",
     "@types/jest": "^19.2.2",
     "@types/node": "^7.0.12",
     "@types/shelljs": "^0.7.0"
   },
   "scripts": {
     "test": "jest --watch",
-    "install": "node install.js"
+    "install": "node dist/install.js",
+    "prepublish": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "git@git.serpro:desdr/gauge-npm.git"
   },
-
   "jest": {
     "watch": true,
     "transform": {

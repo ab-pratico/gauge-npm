@@ -1,11 +1,14 @@
 import { GaugeDownloader } from './gauge_downloader';
 import fs = require('fs');
 import { options  } from './config';
+
+
 describe(GaugeDownloader.name, () => {
 
     let downloader: GaugeDownloader;
 
     beforeEach(() => {
+        jasmine['DEFAULT_TIMEOUT_INTERVAL'] = 30000; // 30 second timeout
         downloader = new GaugeDownloader();
     });
 
@@ -28,5 +31,5 @@ describe(GaugeDownloader.name, () => {
         } catch (e) {
             fail(e);
         }
-    }, 60000);
+    });
 });
