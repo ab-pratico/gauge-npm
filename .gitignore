@@ -1,0 +1,5 @@
+download_cache/*.zip
+logs/*.log
+gauge
+.gauge
+node_modules/
