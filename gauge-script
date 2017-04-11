@@ -1,2 +1,3 @@
-#!$(which node)
-require('./dist/gauge');
+#!/usr/bin/env node
+'use strict';
+require('gauge-npm/dist/gauge');

@@ -1,6 +1,6 @@
 import shelljs = require('shelljs');
 
-let options = require('./dist/config');
+import { options } from './config';
 
 let args = ' ' + process.argv.splice(2).join(' ');
 
