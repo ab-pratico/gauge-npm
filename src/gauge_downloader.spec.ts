@@ -8,7 +8,6 @@ describe(GaugeDownloader.name, () => {
     let downloader: GaugeDownloader;
 
     beforeEach(() => {
-        jasmine['DEFAULT_TIMEOUT_INTERVAL'] = 30000; // 30 second timeout
         downloader = new GaugeDownloader();
     });
 
@@ -31,5 +30,5 @@ describe(GaugeDownloader.name, () => {
         } catch (e) {
             fail(e);
         }
-    });
+    }, 60000);
 });

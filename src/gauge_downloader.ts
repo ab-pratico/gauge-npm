@@ -41,6 +41,10 @@ export class GaugeDownloader {
     }
 
     async setupGauge() {
+        if(!fs.existsSync(options.CACHE_FOLDER)) {
+            console.log('CREATING FOLDER .gauge')
+            shelljs.mkdir('-p', options.CACHE_FOLDER);
+        }
         return this.download()
             .then(this.unzipGauge.bind(this))
             .then(this.copyConfig.bind(this))
@@ -60,6 +64,7 @@ export class GaugeDownloader {
     }
 
     private copyConfig() {
+        shelljs.mkdir('-p', options.GAUGE_HOME_CONFIG);
         shelljs.cp('-R', options.GAUGE_CONFIG + '/*', options.GAUGE_HOME_CONFIG);
         return Promise.resolve();
     }
@@ -70,7 +75,7 @@ export class GaugeDownloader {
                 async: true,
                 env: {
                     GAUGE_HOME: options.GAUGE_HOME,
-                    GAUGE_ROOT: options.GAUGE_FOLDER
+                    GAUGE_ROOT: options.GAUGE_BINARY_FOLDER
                 },
 
             }, (code: number, stdout: string, stderr: string) => {
@@ -86,7 +91,7 @@ export class GaugeDownloader {
     private unzipGauge() {
         return new Promise<void>((resolve, reject) => {
             let admZip = new AdmZip(this.gaugeDownloadedFile);
-            admZip.extractAllToAsync(options.GAUGE_FOLDER, true, (error) => {
+            admZip.extractAllToAsync(options.GAUGE_BINARY_FOLDER, true, (error) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -114,6 +119,7 @@ export class GaugeDownloader {
     }
     private async execute_download() {
         return new Promise<string>((resolve, reject) => {
+            console.log(`starting the gauge download [ ${ this.url } ]... `);
             let req = https.get(this.url, (res: IncomingMessage) => {
                 if (res.statusCode === 200) {
                     let file = fs.createWriteStream(this.gaugeDownloadedFile);
@@ -122,6 +128,7 @@ export class GaugeDownloader {
                         resolve(this.gaugeDownloadedFile);
                     });
                 } else {
+                    console.error(`Error.... status code: ${res.statusCode}`)
                     reject(new Error(`Error downloading gauge, Status Code: ${res.statusCode}`))
                 }
             });

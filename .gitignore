@@ -1,6 +1,7 @@
 download_cache/*.zip
 logs/*.log
-gauge
+gauge-project
 .gauge
 node_modules/
 dist
+__template__
