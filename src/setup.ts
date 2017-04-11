@@ -12,8 +12,6 @@ let validate = require("validate-npm-package-name")
 
 let packageJSON = require(path.join(process.cwd(), 'package.json'));
 
-clear();
-
 console.log(
     chalk.yellow(
         figlet.textSync('Gauge Setup ®')
@@ -57,11 +55,10 @@ console.log(__filename);
 
         // fs.writeFileSync(options.GAUGE_ROOT_FOLDER)
         console.log('\nCreating project folder...');
-        let projectFolder = path.join(process.cwd(), 'gauge-project');
-        shelljs.mkdir(projectFolder);
+        shelljs.mkdir(options.GAUGE_PROJECT_FOLDER);
         
         console.log('\nCopying template files...');
-        shelljs.cp('-Rfn', `${path.join(__dirname, '..','__template__/*')}`, `${path.join(__dirname, '..','gauge-project')}`);
+        shelljs.cp('-Rfn', `${path.join(__dirname, '..','__template__/*')}`, options.GAUGE_PROJECT_FOLDER);
 
         console.log('\nAdding gauge scritps to package.json file on host project ...');
     } catch(e) {

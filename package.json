@@ -1,6 +1,6 @@
 {
   "name": "gauge-npm",
-  "version": "1.0.12",
+  "version": "1.0.20",
   "description": "",
   "main": "gauge.js",
   "bin": {
