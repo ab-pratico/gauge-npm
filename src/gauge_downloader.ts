@@ -49,7 +49,8 @@ export class GaugeDownloader {
             .then(this.unzipGauge.bind(this))
             .then(this.copyConfig.bind(this))
             .then(this.giveExecutionPermission.bind(this))
-            .then(this.installGaugeJsPlugin.bind(this));
+            .then(this.installGaugeJsPlugin.bind(this))
+            .then(this.installGaugeHtmlReportPlugin.bind(this));
     }
 
     private giveExecutionPermission() {
@@ -72,6 +73,25 @@ export class GaugeDownloader {
     private installGaugeJsPlugin() {
         return new Promise<void>((resolve, reject) => {
             shelljs.exec(`${options.GAUGE_BINARY} --install js`, {
+                async: true,
+                env: {
+                    GAUGE_HOME: options.GAUGE_HOME,
+                    GAUGE_ROOT: options.GAUGE_BINARY_FOLDER
+                },
+
+            }, (code: number, stdout: string, stderr: string) => {
+                if (code === 0) {
+                    resolve();
+                } else {
+                    reject(new Error('code: ' + stderr));
+                }
+            });
+        });
+    }
+
+     private installGaugeHtmlReportPlugin() {
+        return new Promise<void>((resolve, reject) => {
+            shelljs.exec(`${options.GAUGE_BINARY} --install html-report`, {
                 async: true,
                 env: {
                     GAUGE_HOME: options.GAUGE_HOME,

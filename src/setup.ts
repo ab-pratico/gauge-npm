@@ -45,7 +45,6 @@ async function  getProjectName() {
     });
 }
 
-console.log(__filename);
 (async function() {
     try {
         shelljs.config.silent = false;

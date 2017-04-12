@@ -1,10 +1,11 @@
 {
   "name": "gauge-npm",
-  "version": "1.0.20",
+  "version": "1.0.22",
   "description": "",
-  "main": "gauge.js",
+  "main": "dist/gauge.js",
   "bin": {
-    "gauge": "./gauge-script"
+    "gauge": "./gauge-wrapper",
+    "gauge-setup": "./gauge-setup"
   },
   "dependencies": {
     "adm-zip": "^0.4.7",
@@ -30,6 +31,7 @@
   "scripts": {
     "test": "jest --watch",
     "install": "node dist/install.js",
+    "postinstall": "echo \"Run 'gauge-setup' to create gauge-project folder\"",
     "prepublish": "tsc"
   },
   "repository": {

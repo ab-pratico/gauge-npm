@@ -1,15 +1,11 @@
 var path = require('path');
 
-let basePath = process.cwd();
-
-if (basePath.indexOf('node_modules/')) {
-    basePath = path.join(process.cwd(), '../../');
-}
+let basePath = path.join(__dirname, '../');
 
 export const options = {
     CACHE_FOLDER: path.join(basePath, '.gauge/download_cache'),
     GAUGE_VERSION: '0.8.3',
-    GAUGE_PROJECT_FOLDER: path.join(basePath, 'gauge-project'),
+    GAUGE_PROJECT_FOLDER: path.join(process.cwd(), 'gauge-project'),
     GAUGE_ROOT_FOLDER: path.join(basePath, '.gauge'),
     GAUGE_BINARY_FOLDER: path.join(basePath, '.gauge/runtime/gauge'),
     GAUGE_CONFIG: path.join(basePath, '.gauge/runtime/gauge/config'),

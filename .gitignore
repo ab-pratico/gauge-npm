@@ -4,4 +4,3 @@ gauge-project
 .gauge
 node_modules/
 dist
-__template__

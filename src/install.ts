@@ -24,9 +24,6 @@ shelljs.mkdir('-p', options.CACHE_FOLDER);
                 console.log('Removing cached file.')
                 shelljs.rm('-Rf', options.CACHE_FOLDER);
                 console.log('Gauge package installed!');
-
-                console.log('\nSetup of Gauge Project on folder gauge-project...');
-                require('./setup');
             }
         })
     });
