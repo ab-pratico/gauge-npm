@@ -57,6 +57,7 @@ export class GaugeDownloader {
         return new Promise<void>((resolve, reject) => {
             try {
                 shelljs.chmod('+x', options.GAUGE_BINARY);
+                shelljs.chmod('+x', options.GAUGE_SCREENSHOT_BINARY);
                 resolve();
             } catch(e) {
                 reject(e);

@@ -10,6 +10,7 @@ export const options = {
     GAUGE_BINARY_FOLDER: path.join(basePath, '.gauge/runtime/gauge'),
     GAUGE_CONFIG: path.join(basePath, '.gauge/runtime/gauge/config'),
     GAUGE_BINARY: path.join(basePath, '.gauge/runtime/gauge/bin/gauge'),
+    GAUGE_SCREENSHOT_BINARY: path.join(basePath, '.gauge/runtime/gauge/bin/gauge_screenshot'),
     GAUGE_HOME: path.join(basePath, '.gauge/home'),
     GAUGE_HOME_CONFIG: path.join(basePath, '.gauge/home/config'),
     GAUGE_URL_TEMPLATE_LINUX: 'https://github.com/getgauge/gauge/releases/download/v%GAUGE_VERSION%/gauge-%GAUGE_VERSION%-linux.%ARCH_STRING%.zip'

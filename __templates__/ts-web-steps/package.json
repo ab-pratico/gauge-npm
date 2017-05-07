@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "Starter template for writing JavaScript tests for Gauge",
   "scripts": {
+    "compile": "tsc",
     "test": "gauge specs/"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@pratico/gauge-web-steps": "~0.0.6",
+    "typescript": "~2.2.1"
+  }
 }

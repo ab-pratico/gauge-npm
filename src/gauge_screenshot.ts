@@ -1,15 +1,10 @@
 import shelljs = require('shelljs');
 import path = require('path');
-
 import { options } from './config';
 
 let args = ' ' + process.argv.splice(2).join(' ');
-let gaugeProjectDir = path.join(process.cwd(), 'gauge-project');
-if (!shelljs.test('-d', gaugeProjectDir)) {
-    gaugeProjectDir = './'; 
-}
 
-shelljs.exec(`${options.GAUGE_BINARY} --dir ${gaugeProjectDir}  ${args}`, {
+shelljs.exec(`${options.GAUGE_SCREENSHOT_BINARY}  ${args}`, {
     env: {
         PATH: process.env.PATH,
         GAUGE_ROOT: options.GAUGE_BINARY_FOLDER,

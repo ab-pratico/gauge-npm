@@ -1,10 +1,11 @@
 {
   "name": "gauge-npm",
-  "version": "1.0.22",
+  "version": "1.0.26",
   "description": "",
   "main": "dist/gauge.js",
   "bin": {
     "gauge": "./gauge-wrapper",
+    "gauge_screenshot": "./gauge_screenshot-wrapper",
     "gauge-setup": "./gauge-setup"
   },
   "dependencies": {

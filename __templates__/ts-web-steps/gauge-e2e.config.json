@@ -1,0 +1,12 @@
+{
+    "pages": {
+        "google": {
+            "url": "http://www.google.com",
+            "elements": {
+                "campoQ": {
+                    "selector": "input[name='q']"
+                }
+            }
+        }
+    }
+}

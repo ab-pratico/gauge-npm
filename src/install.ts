@@ -7,10 +7,16 @@ import { GaugeDownloader } from './gauge_downloader';
 
 let downloader = new GaugeDownloader();
 
-shelljs.mkdir('-p', options.GAUGE_HOME_CONFIG);
-shelljs.mkdir('-p', options.CACHE_FOLDER);
+if (!shelljs.test('-d', options.GAUGE_HOME_CONFIG)) {
+    shelljs.mkdir('-p', options.GAUGE_HOME_CONFIG);
+}
 
-(async function() {
+if (!shelljs.test('-d', options.CACHE_FOLDER)) {
+    shelljs.mkdir('-p', options.CACHE_FOLDER);
+}
+
+
+(async function () {
 
     await downloader.setupGauge().then(() => {
         console.log('Initialize js plugin: ');

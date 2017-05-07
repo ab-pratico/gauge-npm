@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "inlineSources": false,
+        "sourceMap": false,
+        "outDir": "./tests",
+        "rootDir": "ts-tests",
+        "noEmitOnError": false,
+        "lib": [
+            "es5", "dom"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "target": "es5"
+    },
+    "include": [
+        "ts-tests/global.d.ts",
+        "ts-steps/**/*.ts"
+    ]
+}
