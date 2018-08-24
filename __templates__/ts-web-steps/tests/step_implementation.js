@@ -1,1 +1,1 @@
-require('@pratico/gauge-web-steps');
+require('@pratico/gauge-web-steps')(gauge);

@@ -7,7 +7,7 @@
     "test": "gauge specs/"
   },
   "dependencies": {
-    "@pratico/gauge-web-steps": "~0.0.6",
+    "@pratico/gauge-web-steps": "~0.0.7",
     "typescript": "~2.2.1"
   }
 }

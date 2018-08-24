@@ -1,9 +1,42 @@
+/* globals gauge*/
+
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-require("@pratico/gauge-web-steps");
-var page = gauge.siteMap.getPageObject('google');
-gauge.step('p1', function () {
-    var campoQ = page.findElement("campoQ");
-    console.log('campoQ', campoQ);
+
+var assert = require("assert");
+
+var vowels = ["a", "e", "i", "o", "u"];
+
+var numberOfVowels = function (word) {
+  var vowelArr = word.split("").filter(function (elem) { return vowels.indexOf(elem) > -1; });
+  return vowelArr.length;
+};
+
+// --------------------------
+// Gauge step implementations
+// --------------------------
+
+step("Vowels in English language are <vowels>.", function(vowelsGiven) {
+  assert.equal(vowelsGiven, vowels.join(""));
 });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RlcF9pbXBsZW1lbnRhdGlvbi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL2dhdWdlLXByb2plY3QvdHMtdGVzdHMvc3RlcF9pbXBsZW1lbnRhdGlvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLG9DQUFrQztBQU1sQyxJQUFJLElBQUksR0FBRyxLQUFLLENBQUMsT0FBTyxDQUFDLGFBQWEsQ0FBQyxRQUFRLENBQUMsQ0FBQztBQUdqRCxLQUFLLENBQUMsSUFBSSxDQUFDLElBQUksRUFBRTtJQUNiLElBQUksTUFBTSxHQUFHLElBQUksQ0FBQyxXQUFXLENBQUMsUUFBUSxDQUFDLENBQUM7SUFDeEMsT0FBTyxDQUFDLEdBQUcsQ0FBQyxRQUFRLEVBQUUsTUFBTSxDQUFDLENBQUM7QUFDbEMsQ0FBQyxDQUFDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgJ0BwcmF0aWNvL2dhdWdlLXdlYi1zdGVwcyc7XG5cbmltcG9ydCB7IEdhdWdlICB9IGZyb20gJ0BwcmF0aWNvL2dhdWdlLXdlYi1zdGVwcydcblxuZGVjbGFyZSB2YXIgZ2F1Z2U6IEdhdWdlO1xuXG5sZXQgcGFnZSA9IGdhdWdlLnNpdGVNYXAuZ2V0UGFnZU9iamVjdCgnZ29vZ2xlJyk7XG5cblxuZ2F1Z2Uuc3RlcCgncDEnLCAoKSA9PiB7XG4gICAgbGV0IGNhbXBvUSA9IHBhZ2UuZmluZEVsZW1lbnQoXCJjYW1wb1FcIik7XG4gICAgY29uc29sZS5sb2coJ2NhbXBvUScsIGNhbXBvUSk7XG59KTsiXX0=
+
+step("The word <word> has <number> vowels.", function(word, number) {
+  assert.equal(number, numberOfVowels(word));
+});
+
+step("Almost all words have vowels <table>", function(table) {
+  table.rows.forEach(function (row) {
+    assert.equal(numberOfVowels(row.cells[0]), parseInt(row.cells[1]));
+  });
+});
+
+// ---------------
+// Execution Hooks
+// ---------------
+
+beforeScenario(function () {
+  assert.equal(vowels.join(""), "aeiou");
+});
+
+beforeScenario(function () {
+  assert.equal(vowels[0], "a");
+}, { tags: [ "single word" ]});

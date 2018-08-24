@@ -1,7 +1,5 @@
 import shelljs = require('shelljs');
 
-import * as fs from 'fs';
-
 import { options } from './config';
 import { GaugeDownloader } from './gauge_downloader';
 
